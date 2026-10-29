@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administration | Joseph MBANG</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        body {
+            background: #f1f5f9;
+        }
+
+        .admin-header {
+            background: #172033;
+            color: white;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header h1 {
+            font-size: 22px;
+        }
+
+        .admin-header a {
+            color: white;
+        }
+
+        .admin-main {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .admin-intro {
+            margin-bottom: 25px;
+        }
+
+        .admin-intro h2 {
+            margin-bottom: 8px;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .admin-card h2 {
+            margin-bottom: 22px;
+            font-size: 22px;
+        }
+
+        .admin-form label {
+            display: block;
+            margin: 17px 0 7px;
+            font-weight: bold;
+        }
+
+        .admin-form input,
+        .admin-form select,
+        .admin-form textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font: inherit;
+            background: white;
+        }
+
+        .admin-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .admin-form input[type="file"] {
+            padding: 10px;
+        }
+
+        .publish-button {
+            margin-top: 22px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .admin-note {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .admin-footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .admin-card {
+                padding: 20px;
+            }
+
+            .admin-main {
+                width: 94%;
+                margin: 25px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="admin-header">
+        <h1>JOSEPH<span style="color:#60a5fa">.</span> ADMIN</h1>
+
+        <a href="../index.html">← Retour au site</a>
+    </header>
+
+
+   
+<main class="admin-main">
+
+    <div class="admin-intro">
+        <h2>Mon espace administrateur</h2>
+        <p>Gère tes informations et prépare tes nouvelles publications.</p>
+    </div>
+
+    <!-- CONNEXION ADMINISTRATEUR -->
+    <section class="admin-card" id="login-section">
+        <h2>Connexion administrateur</h2>
+        <p>Connecte-toi pour gérer tes publications.</p>
+
+        <form class="admin-form" id="login-form">
+            <label for="admin-email">Adresse e-mail</label>
+            <input
+                type="email"
+                id="admin-email"
+                placeholder="Ton adresse e-mail"
+                autocomplete="username"
+                required
+            >
+
+            <label for="admin-password">Mot de passe</label>
+            <input
+                type="password"
+                id="admin-password"
+                placeholder="Ton mot de passe"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit" class="btn publish-button">
+                Se connecter
+            </button>
+
+            <p id="login-message" role="status"></p>
+        </form>
+    </section>
+
+    <!-- FORMULAIRE DE PUBLICATION -->
+    <section class="admin-card" id="publication-section" hidden>
+        <h2>Créer une publication</h2>
+
+        <button type="button" id="logout-button" class="btn">
+    Se déconnecter
+</button>
+
+        <form class="admin-form" id="publication-form">
+            <label for="titre">Titre de la publication</label>
+            <input
+                type="text"
+                id="titre"
+                placeholder="Ex. : Mon nouveau projet web"
+                required
+            >
+
+            <label for="categorie">Catégorie</label>
+            <select id="categorie" required>
+                <option value="">Choisir une catégorie</option>
+                <option value="Compétences">Mes compétences</option>
+                <option value="Projets">Mes projets</option>
+                <option value="Actualités">Mes actualités</option>
+                <option value="Photos">Mes photos</option>
+                <option value="Personnel">Informations personnelles</option>
+            </select>
+
+            <label for="contenu">Contenu de la publication</label>
+            <textarea
+                id="contenu"
+                placeholder="Écris ici les informations que tu souhaites partager..."
+                required
+            ></textarea>
+
+           
+<label for="media">Ajouter une photo ou une vidéo (facultatif)</label>
+<input
+    type="file"
+    id="media"
+    accept="image/*,video/*"
+>
+<p class="admin-note">
+    Formats acceptés : images et vidéos.
+</p>
+
+            >
+
+            <button type="submit" class="btn publish-button">
+                Publier
+            </button>
+        </form>
+    </section>
+
+    <!-- MES PUBLICATIONS -->
+    <section class="admin-card" id="my-publications" hidden>
+        <h2>Mes publications</h2>
+        <p>Tes publications enregistrées apparaîtront ici.</p>
+    </section>
+
+</main>
+
+
+    <footer class="admin-footer">
+        Espace d'administration — Joseph MBANG
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/admin.js"></script>
+
+</body>
+</html>
